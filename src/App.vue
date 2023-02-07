@@ -35,9 +35,9 @@ let tickets = ref([
   },
 ]);
 let count = ref(tickets.value.length);
-const selectResponsible = ""; // aqui eu quero que seja um objeto com os valores de responsibles.
-const statusTicket = ["aberto", "pendente", "concluido"];
-const responsibles = ["E", "N", "V"];
+const selectResponsible = []; // aqui eu quero que seja um objeto com os valores de responsibles.
+const statusTicket = ref(["aberto", "pendente", "concluido"]);
+const responsibles = ref(["E", "N", "V"]);
 let formData = ref({
   newTicket: "",
   status: "",
@@ -146,18 +146,22 @@ const closePopDel = () => {
   showConfirmDialog.value = false;
 };
 
-const filterTicket = computed(() => {
-  if (!selectResponsible.value) {
-    return tickets.value;
-  }
-  return tickets.value.filter((ticket) => {
-    return ticket.responsible === selectResponsible.value;
-  });
-});
+// const filterTicket = () => {
+//   console.log("funcionando filtroTicket");
+//   if (!selectResponsible.valueOf) {
+//     return tickets.value;
+//   }
+//    tickets.value.filter((ticket) => {
+//     return ticket.responsible === selectResponsible.valueOf;
+//   });
+//   console.log(tickets.value);
+// };
 </script>
 
 <template>
-  <div class="container">
+  <div class="main-container">
+   <div class="container">
+    
     <HeaderTickets
       :createNewTicket="createNewTicket"
       :count="count"
@@ -165,7 +169,7 @@ const filterTicket = computed(() => {
       :showPop="showPop"
     />
     <div class="res-option">
-      <h2>Responsável:</h2>
+      <h2 class="responsavel">Responsável:</h2>
       <label
         class="resp-radio"
         v-for="responsible in responsibles"
@@ -173,6 +177,7 @@ const filterTicket = computed(() => {
       >
         <input
           type="radio"
+          @click="filterTicket"
           v-model="selectResponsible"
           :id="responsible"
           name="responsible"
@@ -182,6 +187,8 @@ const filterTicket = computed(() => {
       </label>
     </div>
     <ListTickets
+      :filterTicket="filterTicket"
+      :selectResponsible="selectResponsible"
       :popConfirmDel="popConfirmDel"
       :openPopEdit="openPopEdit"
       :delTicket="delTicket"
@@ -210,29 +217,47 @@ const filterTicket = computed(() => {
       v-if="showPop"
     />
   </div>
+</div>
 </template>
 
 <style scoped>
-.res-option {
+
+.responsavel {
+  margin: 0 0 0 20px;
+  color: rgb(167, 162, 162);
+}
+.main-container {
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  justify-content: center;
+  width: 100vh;
+  height: 100vh;
+  background-color: rgb(218, 218, 218);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 10px;
+  height: 100%;
+  background-color: white;
+}
+.res-radio {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 0 20px 0;
 }
-resp-radio {
-  display: block;
-  margin: 0 0 0 20px;
+.resp-radio {
+  align-items: center;
+  margin: 20px 20px 0 20px;
 }
 header {
   line-height: 1.5;
 }
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 60vw;
-  height: 100vh;
-  background-color: #f5f5f5;
-}
+
 </style>

@@ -39,28 +39,34 @@ header {
 .title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #000;
+  color: #aea9a9;
   margin-bottom: 0.5rem;
   margin-right: 3rem;
+  justify-content: center;
 }
 
 .count-tickets {
-  font-size: 1rem;
-  font-weight: 400;
-  color: #000;
-  margin-bottom: 1rem;
-  margin-right: 3rem;
-}
-
-.btn-new-tickets {
-  background-color: #000;
-  color: #fff;
+  background-color: rgb(229, 204, 106);
+  color: black;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
+  padding: 0.5rem 1rem  ;
+  border-radius: 20px;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
+  margin: 10px ;
+}
+
+.btn-new-tickets {
+  background-color: #3c81ee;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 45px ;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 10px ;
 }
 
 .btn-new-tickets:hover {

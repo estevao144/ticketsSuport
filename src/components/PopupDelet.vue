@@ -16,7 +16,7 @@ export default {
       type: String,
       default: "",
     },
-    FormData: {
+    formData: {
       type: Object,
       default: () => {},
     },
@@ -29,7 +29,7 @@ export default {
     <form class="popup-inner" @submit.prevent="validaForm">
       <h2>{{ title }}</h2>
       <p class="buttons">
-        <button class="deleteTicket" @click="delTicket(), closePopDel">
+        <button class="deleteTicket" @click="delTicket(formData), closePopDel">
           Delete Item
         </button>
         <button class="cancelPop" @click="closePopDel">Cancel</button>
