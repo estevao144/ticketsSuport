@@ -5,18 +5,12 @@ export default {
   
   setup() {},
   props: {
-    findTicket: {
-      type: Function,
-      default: () => {console.log("Função não detectada. ListTickets");},
-    },
     tickets: {
       type: Array,
-      required: true,
     },
-    delTicket: {
-    type: Function,
-    default: () => {console.log("Função não detectada. ListTickets");},
-  },
+    ticket: {
+      type: Object,
+    },
   openPopEdit: {
     type: Function,
     default: () => {console.log("Função não detectada. ListTickets");},
@@ -25,22 +19,15 @@ export default {
     type: Function,
     default: () => {console.log("Função não detectada. ListTickets");},
   },
-  filterTicket: {
-    type: Array,
-  },
-  selectResponsable: {
-    type: String,
-    default: "",
-  },
   },
 };
 </script>
 <template>
-  <li class="list-ticket" v-for="ticket in tickets" :key="ticket.id">
+  
     #{{ ticket.id }} {{ ticket.ticket }} {{ ticket.status }} {{ ticket.responsible }}
       <button class="editTicket" @click="openPopEdit(ticket)"> &#09998</button>
     <button class="delTicket" @click="popConfirmDel(ticket)"> &#10005</button>
-  </li>
+  
 </template>
 <style scoped>
 .list-ticket{

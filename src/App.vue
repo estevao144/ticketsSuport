@@ -17,19 +17,19 @@ let tickets = ref([
   },
   {
     id: 2,
-    ticket: "Não consigo acessar o sistema",
+    ticket: "Não consigo Ligar o computador",
     responsible: "N",
     status: "open",
   },
   {
     id: 3,
-    ticket: "Não consigo acessar o sistema",
+    ticket: "Meu linux não inicia",
     responsible: "V",
     status: "open",
   },
   {
     id: 4,
-    ticket: "Não consigo acessar o sistema",
+    ticket: "Windo",
     responsible: "E",
     status: "open",
   },
@@ -146,82 +146,67 @@ const closePopDel = () => {
   showConfirmDialog.value = false;
 };
 
-// const filterTicket = () => {
-//   console.log("funcionando filtroTicket");
-//   if (!selectResponsible.valueOf) {
-//     return tickets.value;
-//   }
-//    tickets.value.filter((ticket) => {
-//     return ticket.responsible === selectResponsible.valueOf;
-//   });
-//   console.log(tickets.value);
-// };
+const filteredTicket = computed(() => {
+
+});
 </script>
 
 <template>
   <div class="main-container">
-   <div class="container">
-    
-    <HeaderTickets
-      :createNewTicket="createNewTicket"
-      :count="count"
-      :openPopup="openPopup"
-      :showPop="showPop"
-    />
-    <div class="res-option">
-      <h2 class="responsavel">Responsável:</h2>
-      <label
-        class="resp-radio"
-        v-for="responsible in responsibles"
-        :key="responsible.valueOf"
-      >
-        <input
-          type="radio"
-          @click="filterTicket"
-          v-model="selectResponsible"
-          :id="responsible"
-          name="responsible"
-          :value="responsible"
+    <div class="container">
+      <HeaderTickets
+        :createNewTicket="createNewTicket"
+        :count="count"
+        :openPopup="openPopup"
+        :showPop="showPop"
+      />
+      <div class="res-option">
+        <h2 class="responsavel">Responsável:</h2>
+        <div class="select">
+          <select v-model="selectResponsible" multiple>
+            <option v-for="responsible of responsibles" :key="responsible">
+              {{ responsible }}
+            </option>
+          </select>
+      </div>
+
+      
+        <ListTickets
+        v-for="ticket of filteredTicket" :key="ticket.id"
+          :popConfirmDel="popConfirmDel"
+          :openPopEdit="openPopEdit"
+          :ticket="ticket"
+          :tickets="tickets"
         />
-        {{ responsible }}
-      </label>
-    </div>
-    <ListTickets
-      :filterTicket="filterTicket"
-      :selectResponsible="selectResponsible"
-      :popConfirmDel="popConfirmDel"
-      :openPopEdit="openPopEdit"
-      :delTicket="delTicket"
-      :tickets="tickets"
-      :showConfirmDialog="showConfirmDialog"
-    />
-    <div>
-      <PopupDelet
-        v-if="showConfirmDialog"
-        :tickets="tickets"
-        :title="title"
-        :delTicket="delTicket"
+      
+
+      <div>
+        <PopupDelet
+          v-if="showConfirmDialog"
+          :tickets="tickets"
+          :title="title"
+          :delTicket="delTicket"
+          :formData="formData"
+          :closePopDel="closePopDel"
+        />
+      </div>
+      <PopupTickets
+        :validaForm="validaForm"
+        :editTicket="editTicket"
         :formData="formData"
-        :closePopDel="closePopDel"
+        :statusTicket="statusTicket"
+        :responsibles="responsibles"
+        :createNewTicket="createNewTicket"
+        :title="title"
+        :closePopup="closePopup"
+        v-if="showPop"
       />
     </div>
-    <PopupTickets
-      :validaForm="validaForm"
-      :editTicket="editTicket"
-      :formData="formData"
-      :statusTicket="statusTicket"
-      :responsibles="responsibles"
-      :createNewTicket="createNewTicket"
-      :title="title"
-      :closePopup="closePopup"
-      v-if="showPop"
-    />
+    </div>
   </div>
-</div>
 </template>
 
 <style scoped>
-
 .responsavel {
   margin: 0 0 0 20px;
   color: rgb(167, 162, 162);
@@ -259,5 +244,4 @@ const closePopDel = () => {
 header {
   line-height: 1.5;
 }
-
 </style>
