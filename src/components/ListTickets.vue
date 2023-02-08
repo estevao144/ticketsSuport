@@ -1,36 +1,89 @@
 <script>
+import Ticket from "./Ticket.vue";
 export default {
-  
+  components: { Ticket },
+
   name: "ListTickets",
-  
+
   setup() {},
   props: {
+    filterBy: {
+      type: Function,
+      default: () => {
+        console.log("Função não detectada. ListTickets");
+      },
+    },
+
+    responsibles: {
+      type: Array,
+    },
+
+    filteredTicket: {
+      type: Array,
+    },
     tickets: {
       type: Array,
     },
     ticket: {
       type: Object,
     },
-  openPopEdit: {
-    type: Function,
-    default: () => {console.log("Função não detectada. ListTickets");},
-  },
-  popConfirmDel: {
-    type: Function,
-    default: () => {console.log("Função não detectada. ListTickets");},
-  },
+    openPopEdit: {
+      type: Function,
+      default: () => {
+        console.log("Função não detectada. ListTickets");
+      },
+    },
+    popConfirmDel: {
+      type: Function,
+      default: () => {
+        console.log("Função não detectada. ListTickets");
+      },
+    },
   },
 };
 </script>
 <template>
-  
-    #{{ ticket.id }} {{ ticket.ticket }} {{ ticket.status }} {{ ticket.responsible }}
-      <button class="editTicket" @click="openPopEdit(ticket)"> &#09998</button>
-    <button class="delTicket" @click="popConfirmDel(ticket)"> &#10005</button>
-  
+  <div class="res-option">
+    <h2> Responsaveis:</h2>
+    <button
+    class="resp-filter"
+      v-for="responsible of responsibles"
+      :key="responsible"
+      @click="filterBy(responsible)"
+    >
+      {{ responsible }}</button
+    >
+  </div>
+
+  <Ticket
+    v-for="ticket of filteredTicket"
+    :key="ticket.id"
+    :ticket="ticket"
+    :openPopEdit="openPopEdit"
+    :popConfirmDel="popConfirmDel"
+  />
 </template>
 <style scoped>
-.list-ticket{
+.res-option {
+ display: flex;
+ justify-content: right;
+ width: 0px;
+  
+}
+.resp-filter {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  border: 1px solid rgb(199, 199, 199);
+  border-radius: 90px;
+  background-color: rgb(193, 214, 252);
+  
+
+}
+.list-ticket {
   display: flex;
   justify-content: space-between;
   align-items: center;

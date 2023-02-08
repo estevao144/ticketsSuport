@@ -13,29 +13,29 @@ let tickets = ref([
     id: 1,
     ticket: "Não consigo acessar o sistema",
     responsible: "E",
-    status: "open",
+    status: "aberto",
   },
   {
     id: 2,
     ticket: "Não consigo Ligar o computador",
     responsible: "N",
-    status: "open",
+    status: "em andamento",
   },
   {
     id: 3,
     ticket: "Meu linux não inicia",
     responsible: "V",
-    status: "open",
+    status: "em andamento",
   },
   {
     id: 4,
     ticket: "Windo",
     responsible: "E",
-    status: "open",
+    status: "fechado",
   },
 ]);
 let count = ref(tickets.value.length);
-const selectResponsible = []; // aqui eu quero que seja um objeto com os valores de responsibles.
+const selectResponsible = ref(''); 
 const statusTicket = ref(["aberto", "pendente", "concluido"]);
 const responsibles = ref(["E", "N", "V"]);
 let formData = ref({
@@ -145,10 +145,20 @@ const verificaTicket = (tickets) => {
 const closePopDel = () => {
   showConfirmDialog.value = false;
 };
+const filterBy = (select) => {
+  selectResponsible.value = select;
+  console.log(selectResponsible);
+  
+};
 
 const filteredTicket = computed(() => {
-
+  if (selectResponsible.value) {
+    
+    return tickets.value.filter((ticket) => ticket.responsible === selectResponsible.value);
+  }
+  return tickets.value;
 });
+
 </script>
 
 <template>
@@ -160,23 +170,15 @@ const filteredTicket = computed(() => {
         :openPopup="openPopup"
         :showPop="showPop"
       />
-      <div class="res-option">
-        <h2 class="responsavel">Responsável:</h2>
-        <div class="select">
-          <select v-model="selectResponsible" multiple>
-            <option v-for="responsible of responsibles" :key="responsible">
-              {{ responsible }}
-            </option>
-          </select>
-      </div>
-
-      
+           
         <ListTickets
-        v-for="ticket of filteredTicket" :key="ticket.id"
           :popConfirmDel="popConfirmDel"
           :openPopEdit="openPopEdit"
           :ticket="ticket"
           :tickets="tickets"
+          :filteredTicket="filteredTicket"
+          :responsibles="responsibles"
+          :filterBy="filterBy"
         />
       
 
@@ -203,7 +205,6 @@ const filteredTicket = computed(() => {
       />
     </div>
     </div>
-  </div>
 </template>
 
 <style scoped>
