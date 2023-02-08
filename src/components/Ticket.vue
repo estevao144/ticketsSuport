@@ -8,11 +8,18 @@ props:{
     },
     openPopEdit: {
       type: Function,
-      default: () => {console.log("Função não detectada. ListTickets");},
+      default: () => {console.log("Função não detectada. chickets");},
     },
     popConfirmDel: {
       type: Function,
-      default: () => {console.log("Função não detectada. ListTickets");},
+      default: () => {console.log("Função não detectada. chickets");},
+    },
+    changeStatusTicket: {
+      type: Function,
+      default: () => {console.log("Função não detectada. Ticket");},
+    },
+    classTicket: {
+      type: String,
     },
 }
 };
@@ -20,15 +27,27 @@ props:{
 </script>
 
 <template>
-    <div class="ticket-solo">
-      #{{ ticket.id }} {{ ticket.ticket }} {{ ticket.status }} {{ ticket.responsible }}
+    <div class="container-ticket">
+      
+      <span class="ticket-id">
+        #{{ ticket.id }} 
+      </span> 
+      <span class="ticket-ticket">
+        {{ ticket.ticket }} 
+      </span>
+      <span class="ticket-responsible">
+      {{ ticket.responsible }} 
+      </span>
+      <button class="" @click="changeStatusTicket(ticket)">
+        {{ ticket.status }}
+      </button>
       <button class="editTicket" @click="openPopEdit(ticket)"> &#09998</button>
     <button class="delTicket" @click="popConfirmDel(ticket)"> &#10005</button>
 </div>
 </template>
 <style scoped>
 
-    .ticket-solo {
+    .container-ticket {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -36,28 +55,57 @@ props:{
         border-bottom: 1px solid #ccc;
         font-size: 1.5rem;
     }
-    .ticket {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        border-bottom: 1px solid #ccc;
-        font-size: 1.5rem;
+    .ticket-id {
+        width: 50px;
     }
-    button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        font-size: 1.5rem;
-        color: #000;
+    .ticket-ticket {
+        width: 400px;
     }
-    button:hover {
-        color: #333;
+    .ticket-responsible {
+        width: 200px;
+    }
+    .status-ticket {
+        width: 100px;
+        height: 40px;
+        border: 1px solid rgb(199, 199, 199);
+        border-radius: 90px;
+        background-color: rgb(193, 214, 252);
+    }
+
+    .status-novo {
+        width: 100px;
+        height: 40px;
+        border: 1px solid rgb(199, 199, 199);
+        border-radius: 90px;
+        background-color: rgb(255, 52, 1);
+    }
+
+    .status-em-andamento {
+        width: 100px;
+        height: 40px;
+        border: 1px solid rgb(199, 199, 199);
+        border-radius: 90px;
+        background-color: rgb(231, 224, 38);
+    }
+
+    .status-concluido {
+        width: 100px;
+        height: 40px;
+        border: 1px solid rgb(199, 199, 199);
+        border-radius: 90px;
+        background-color: rgb(3, 226, 48);
     }
     .editTicket {
-        color: #000;
+        width: 50px;
+        height: 40px;
+        border:0ch;
+        background-color: transparent;   
     }
+
     .delTicket {
-        color: #f00;
+        width: 50px;
+        height: 50px;
+        border:0ch;
+        background-color: transparent;  
     }
 </style>

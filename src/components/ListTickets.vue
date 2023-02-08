@@ -39,6 +39,15 @@ export default {
         console.log("Função não detectada. ListTickets");
       },
     },
+    changeStatusTicket: {
+      type: Function,
+      default: () => {
+        console.log("Função não detectada. ListTickets");
+      },
+    },
+    classTicket: {
+      type: String,
+    },
   },
 };
 </script>
@@ -58,9 +67,11 @@ export default {
   <Ticket
     v-for="ticket of filteredTicket"
     :key="ticket.id"
+    :classTicket="classTicket"
     :ticket="ticket"
     :openPopEdit="openPopEdit"
     :popConfirmDel="popConfirmDel"
+    :changeStatusTicket="changeStatusTicket"
   />
 </template>
 <style scoped>

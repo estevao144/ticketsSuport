@@ -13,30 +13,30 @@ let tickets = ref([
     id: 1,
     ticket: "Não consigo acessar o sistema",
     responsible: "E",
-    status: "aberto",
+    status: "Novo",
   },
   {
     id: 2,
     ticket: "Não consigo Ligar o computador",
     responsible: "N",
-    status: "em andamento",
+    status: "Em andamento",
   },
   {
     id: 3,
     ticket: "Meu linux não inicia",
     responsible: "V",
-    status: "em andamento",
+    status: "Em andamento",
   },
   {
     id: 4,
     ticket: "Windo",
     responsible: "E",
-    status: "fechado",
+    status: "Concluído",
   },
 ]);
 let count = ref(tickets.value.length);
 const selectResponsible = ref(''); 
-const statusTicket = ref(["aberto", "pendente", "concluido"]);
+const statusTicket = ref(["novo", "em andamento", "concluído"]);
 const responsibles = ref(["E", "N", "V"]);
 let formData = ref({
   newTicket: "",
@@ -151,6 +151,18 @@ const filterBy = (select) => {
   
 };
 
+const changeStatusTicket = (ticket) => {
+  console.log(ticket);
+  if (ticket.status === "Novo") {
+    ticket.status = "Em andamento";
+  } else if (ticket.status === "Em andamento") {
+    ticket.status = "Concluído";
+  } else if (ticket.status === "Concluído") {
+    alert("Ticket já está concluído");
+  }
+
+};
+
 const filteredTicket = computed(() => {
   if (selectResponsible.value) {
     
@@ -172,6 +184,7 @@ const filteredTicket = computed(() => {
       />
            
         <ListTickets
+        :classTicket="classTicket"
           :popConfirmDel="popConfirmDel"
           :openPopEdit="openPopEdit"
           :ticket="ticket"
@@ -179,6 +192,7 @@ const filteredTicket = computed(() => {
           :filteredTicket="filteredTicket"
           :responsibles="responsibles"
           :filterBy="filterBy"
+          :changeStatusTicket="changeStatusTicket"
         />
       
 
