@@ -41,32 +41,54 @@ export default {
           <input class="input-pop" type="text" placeholder="Exemplo: Meu excel não abre."  v-model="formData.newTicket" />
         </div>
 
-        <p>O ticket está:</p>
+        <p>O ticket está:</p> 
         <div class="container-status">
-          <label class="res-radio" v-for="status of statusTicket" :key="status">
-            <input class="radio" :class="{ status }" type="radio" :value="status" v-model="formData.status" />
-            {{ status }}
+          <div class="button"  id="verde"> 
+            <input class="Novo"  type="radio" value="Novo" v-model="formData.status" />
+            Novo
+            <label class="btn-default">
           </label>
+          </div>
+          
+          <div class="button" id="amarelo"> 
+            <input class="Em-andamento"  type="radio" value="Em-andamento" v-model="formData.status" />
+            Em-andamento
+            <label class="btn-default">
+          </label>
+          </div>
+
+          <div class="button" id="vermelho"> 
+            <input class="Concluído"  type="radio" value="Concluído" v-model="formData.status" />
+            Concluído
+            <label class="btn-default">
+          </label>
+          </div>
         </div>
         <p>Responsável pela análise:</p>
         <div class="container-status">
-          
+        
 
-          <span
-            class="res-radio"
-            v-for="responsible in responsibles"
-            :key="responsible"
-          >
-            <input
-              class="radio"
-              type="radio"
-              v-model="formData.responsible"
-              :id="responsible"
-              name="responsible"
-              :value="responsible"
-            />
-            {{ responsible }}
-          </span>
+          <div class="button"  id="blue"> 
+            <input class="Novo"  type="radio" value="E" v-model="formData.responsible" :id="responsible" name="responsible" />
+            E
+            <label class="btn-default">
+          </label>
+          </div>
+
+          <div class="button"  id="blue"> 
+            <input class="Novo"  type="radio" value="N" v-model="formData.responsible" :id="responsible" name="responsible" />
+            N
+            <label class="btn-default">
+          </label>
+          </div>
+
+          <div class="button"  id="blue"> 
+            <input class="Novo"  type="radio" value="V" v-model="formData.responsible" :id="responsible" name="responsible" />
+            V
+            <label class="btn-default">
+          </label>
+          </div>
+          
         </div>
 
         <div class="buttons-pop">
@@ -78,7 +100,23 @@ export default {
   </div>
 </template>
 <style scoped>
+#blue {
+  background-color: rgb(176, 176, 245);
+  border-radius: 20px;
+}
 
+#verde {
+ background-color: green;
+ border-radius: 20px;
+}
+
+#amarelo {
+background-color: yellow;
+border-radius: 20px;}
+
+#vermelho {
+background-color: red;
+border-radius: 20px;}
 .form-input {
   width: 100%;
 
@@ -167,9 +205,7 @@ export default {
 .res-radio {
   margin-right: 10px;
 }
-.radio {
-  display: ;
-}
+
 .popup {
   position: fixed;
   top: 0;
@@ -192,6 +228,45 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+/* apagar */
+
+.button {
+  padding: 8px;
+  padding-right: 16px;
+  padding-left: 16px;
+  float: left;
+  margin: 0 5px 0 0;
+  height: 40px;
+  position: relative;
+}
+
+.button label,
+.button input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.button input[type="radio"] {
+  opacity: 0.011;
+  z-index: 100;
+}
+
+.button input[type="radio"]:checked + label {
+  border: 1px solid #000;
+  border-radius: 20px;
+}
+
+.button label {
+
+  cursor: pointer;
+  z-index: 90;
+  line-height: 1.8em;
 }
 
 </style>
