@@ -39,7 +39,8 @@ props:{
       {{ ticket.responsible }} 
       </span>
       
-      <button class="status-ticket" :class="ticket.status" @click="changeStatusTicket(ticket)">
+      <button class="status-ticket" :class="ticket.status" 
+      @click="changeStatusTicket(ticket)">
         {{ ticket.status }}
       </button>
       
@@ -59,8 +60,8 @@ props:{
         justify-content: center;
         width: 100%;
         max-width: 1000px;
-        max-height: 18%;
-        height: 60%;
+        max-height: 16%;
+        height: 30%;
         border: 1px solid rgb(199, 199, 199);
     }
 
@@ -76,7 +77,7 @@ props:{
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding: 1rem;
+        padding: 5px;
         font-size: 1.2rem;
         float:left
         
@@ -86,6 +87,7 @@ props:{
         display: flex;
         justify-content: space-between ;
         align-items: center;
+        height: 0px;
         padding: 1rem;
         font-size: 1.5rem;
         float:left
@@ -107,22 +109,21 @@ props:{
     border: 1px solid rgb(199, 199, 199);
     border-radius: 100px;
     background-color: rgb(193, 214, 252);
-    margin-right: 5%;
+    margin-right: 2%;
+    margin-left: 3%;
     }
     .padrao-ticket {
-        
-        width: 100px;
-        height: 40px;
-        border: 1px solid rgb(199, 199, 199);
-        border-radius: 90px;
+        width: auto;
        
     }
     .Novo {
-        width: 100px;
+        width: auto;
         height: 40px;
         border: 1px solid rgb(199, 199, 199);
         border-radius: 90px;
         background-color: rgb(255, 52, 1);
+        padding-right: 16px;
+        padding-left: 16px;
     }
 
     .Em-andamento {

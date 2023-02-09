@@ -183,7 +183,7 @@ const filteredTicket = computed(() => {
         :openPopup="openPopup"
         :showPop="showPop"
       />
-           
+       <div class="container-tickets">    
         <ListTickets
         :classTicket="classTicket"
           :popConfirmDel="popConfirmDel"
@@ -195,7 +195,7 @@ const filteredTicket = computed(() => {
           :filterBy="filterBy"
           :changeStatusTicket="changeStatusTicket"
         />
-      
+      </div>
 
       <div>
         <PopupDelet
@@ -223,6 +223,13 @@ const filteredTicket = computed(() => {
 </template>
 
 <style scoped>
+
+.container-tickets {
+  width: 100%;
+  min-width: 300px;
+  overflow-x: scroll;
+  
+}
 .responsavel {
   margin: 0 0 0 20px;
   color: rgb(167, 162, 162);
