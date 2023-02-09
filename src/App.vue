@@ -19,13 +19,13 @@ let tickets = ref([
     id: 2,
     ticket: "Não consigo Ligar o computador",
     responsible: "N",
-    status: "Em andamento",
+    status: "Em-andamento",
   },
   {
     id: 3,
     ticket: "Meu linux não inicia",
     responsible: "V",
-    status: "Em andamento",
+    status: "Em-andamento",
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ let tickets = ref([
 ]);
 let count = ref(tickets.value.length);
 const selectResponsible = ref(''); 
-const statusTicket = ref(["novo", "em andamento", "concluído"]);
+const statusTicket = ref(["Novo", "Em-andamento", "Concluído"]);
 const responsibles = ref(["E", "N", "V"]);
 let formData = ref({
   newTicket: "",
@@ -152,15 +152,16 @@ const filterBy = (select) => {
 };
 
 const changeStatusTicket = (ticket) => {
-  console.log(ticket);
+  
+
   if (ticket.status === "Novo") {
-    ticket.status = "Em andamento";
-  } else if (ticket.status === "Em andamento") {
+    ticket.status = "Em-andamento";
+  } else if (ticket.status === "Em-andamento") {
     ticket.status = "Concluído";
   } else if (ticket.status === "Concluído") {
     alert("Ticket já está concluído");
   }
-
+  console.log(ticket);
 };
 
 const filteredTicket = computed(() => {

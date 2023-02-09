@@ -48,7 +48,7 @@ export default {
           {{ status }}
         </p>
         <p>Responsavel:</p>
-        <p
+        <span
           class="resp-radio"
           v-for="responsible in responsibles"
           :key="responsible"
@@ -61,7 +61,7 @@ export default {
             :value="responsible"
           />
           {{ responsible }}
-        </p>
+      </span>
 
         <div class="buttons-">
           <button class="btn-cancel" @click="closePopup">Cancelar</button>
@@ -72,11 +72,14 @@ export default {
   </div>
 </template>
 <style scoped>
-status-radio {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid #ccc;
+.status-radio {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 15px;
+  padding: 0px;
+  float: left;
 }
 .popup {
   position: fixed;
