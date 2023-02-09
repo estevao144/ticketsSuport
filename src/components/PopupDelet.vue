@@ -27,12 +27,12 @@ export default {
 <template>
   <div class="popup">
     <form class="popup-inner" @submit.prevent="validaForm">
-      <h2>{{ title }}</h2>
+      <h2 class="title-pop">{{ title }}</h2>
       <p class="buttons">
-        <button class="deleteTicket" @click="delTicket(formData), closePopDel">
+        <button class="btn-save" @click="delTicket(formData), closePopDel">
           Delete Item
         </button>
-        <button class="cancelPop" @click="closePopDel">Cancel</button>
+        <button class="btn-cancel" @click="closePopDel">Cancel</button>
       </p>
     </form>
   </div>
@@ -68,6 +68,38 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
-  border-bottom: 1px solid #ccc;
+}
+
+.btn-save {
+  background-color: #3c81ee;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 45px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 10px;
+}
+.btn-cancel {
+  border: none;
+  padding: 0.5rem 45px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.title-pop {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-size: 20px;
+  padding-bottom: 10px;
+  font-weight: 600;
+  color: rgb(191, 191, 191);
+  border-bottom: 1px solid #d6d1d1;
 }
 </style>

@@ -59,8 +59,7 @@ props:{
         flex-direction: column;
         justify-content: center;
         width: 100%;
-        max-width: 1000px;
-        max-height: 16%;
+        max-height: 26%;
         height: 30%;
         border: 1px solid rgb(199, 199, 199);
     }
